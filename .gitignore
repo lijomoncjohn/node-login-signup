@@ -1,0 +1,7 @@
+node_modules
+npm-debug.log
+.app.js.swo
+#db_backup
+.app.js.swp
+.idea
+package-lock.json

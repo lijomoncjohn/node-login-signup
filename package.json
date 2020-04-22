@@ -1,0 +1,29 @@
+{
+  "name": "login-signup",
+  "version": "1.0.0",
+  "description": "Login and signup of user with node express and mongodb",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lijomoncjohn/node-login-signup.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mongoose",
+    "jwt",
+    "auth"
+  ],
+  "author": "Lijomon C John",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lijomoncjohn/node-login-signup/issues"
+  },
+  "homepage": "https://github.com/lijomoncjohn/node-login-signup#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

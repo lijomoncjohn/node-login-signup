@@ -1,5 +1,7 @@
 const express = require('express')
 const router = express.Router()
+
+// import controller for user routes
 const userController = require('../controllers/user-controller')
 /**
  * user login route

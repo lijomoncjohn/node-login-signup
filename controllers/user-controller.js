@@ -1,7 +1,7 @@
 const HttpError = require('../custom/http-error')
 
 /**
- * 
+ * login user by checking password and if exists in db
  * @param {emal, password} req 
  * @param {token} res 
  * @param {error} next 
@@ -11,7 +11,7 @@ const login = (req, res, next) => {
     
     // check for empty parameters
     if (!email || !password) return next (
-        new HttpError('Required parameters are empty', 404)
+        new HttpError('Required parameters are empty', 404) // return error for empty parameters
     )
 
     // for successful login instance
@@ -22,7 +22,7 @@ const login = (req, res, next) => {
 }
 
 /**
- * 
+ * register user by hashing password if not exists in db
  * @param {first_name, last_name, dob, email, password} req 
  * @param {user} res 
  * @param {error} next 
@@ -32,7 +32,7 @@ const signup = (req, res, next) => {
 
     // check for empty parameters
     if (!first_name || !last_name || !dob || !email || !password) return next (
-        new HttpError('Required parameters are empty', 404)
+        new HttpError('Required parameters are empty', 404) // return error for empty parameters
     )
 
     // passed all error test
@@ -42,5 +42,6 @@ const signup = (req, res, next) => {
     })
 }
 
+// export all functions here
 exports.login = login
 exports.signup = signup

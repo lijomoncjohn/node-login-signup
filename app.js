@@ -3,6 +3,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
+const config = require('./config/config')
 const HttpError = require('./custom/http-error')
 // Import required routes to app
 const userRoutes = require('./routes/user')
@@ -40,10 +41,10 @@ app.use((error, req, res, next) => {
 })
 
 // Connect to mongodb using mongoose
-mongoose.connect('mongodb://localhost:27017/userdemodb', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(config.db, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
         .then(() => console.log('Connected to database')) // Functions after succesfully connected to db
         .catch((err) => console.log('Error connecting to database' + err)); // Returns connection error details
 
 // Create node app to server. Running on port 80 by default
 var port = 80 || 3000;
-app.listen(port, console.log(`App running on ${port} & 443 port(s)`));
+app.listen(port, console.log(`App running on ${port}`));

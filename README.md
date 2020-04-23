@@ -2,15 +2,15 @@
 User signup and login demo using nodejs and mongodb. Jsonwebtoken used for generating token for security.
 
 # API end points
-1. api/user/signup
-   parameters:
-    a) first_name
-    b) last_name
-    c) email
-    d) dob
-    e) password
+1. <b>api/user/signup</b> <br/>
+   parameters: <br/>
+    a) first_name <br/>
+    b) last_name <br/>
+    c) email <br/>
+    d) dob <br/>
+    e) password <br/><br/>
 
-1. api/user/login
-   parameters:
-    a) email
-    b) password
+1. <b>api/user/login</b> <br/>
+   parameters: <br/>
+    a) email <br/>
+    b) password <br/>

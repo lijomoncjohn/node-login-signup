@@ -5,9 +5,14 @@ let chaiHttp = require('chai-http')
 chai.should()
 chai.use(chaiHttp)
 
+// test user apis
 describe('User API', () => {
-    describe("Login valid user POST api/user/login", () => {
-        it("should login valid user", (done) => {
+
+    // do test for /api/user/login
+    describe("Login valid user POST api/user/login", () => 
+    {
+        it("should login valid user", (done) => 
+        {
             const user = {
                 email: "test@email.com",
                 password: "1234567890"
@@ -15,14 +20,16 @@ describe('User API', () => {
             chai.request(server)
             .post('/api/user/login')
             .send(user)
-            .end((err, res) => {
+            .end((err, res) => 
+            {
                 if (err) return done(err);
                 res.should.have.status(200)
                 done()
             })
         })
 
-        it("should NOT login invalid user POST api/user/login", (done) => {
+        it("should NOT login invalid user POST api/user/login", (done) => 
+        {
             const user = {
                 email: "testone@email.com",
                 password: "qwertyuiop"
@@ -30,7 +37,8 @@ describe('User API', () => {
             chai.request(server)
             .post('/api/user/login')
             .send(user)
-            .end((err, res) => {
+            .end((err, res) => 
+            {
                 if (err) return done(err);
                 res.should.have.status(404)
                 done()
@@ -38,8 +46,12 @@ describe('User API', () => {
         })
     })
 
-    describe("Signup new user POST api/user/signup", () => {
-        it("should POST new user", (done) => {
+
+    // do test for /api/user/signup
+    describe("Signup new user POST api/user/signup", () => 
+    {
+        it("should POST new user", (done) => 
+        {
             const newUser = {
                 firstName: "first name",
                 lastName: "last name",
@@ -50,14 +62,16 @@ describe('User API', () => {
             chai.request(server)
             .post('/api/user/signup')
             .send(newUser)
-            .end((err, res) => {
+            .end((err, res) => 
+            {
                 if (err) return done(err);
                 res.should.have.status(200)
                 done()
             })
         })
 
-        it("should NOT POST user with existing email address", (done) => {
+        it("should NOT POST user with existing email address", (done) => 
+        {
             const newUser = {
                 firstName: "first name",
                 lastName: "last name",
@@ -68,14 +82,16 @@ describe('User API', () => {
             chai.request(server)
             .post('/api/user/signup')
             .send(newUser)
-            .end((err, res) => {
+            .end((err, res) => 
+            {
                 if (err) return done(err);
                 res.should.have.status(404)
                 done()
             })
         })
 
-        it("should NOT POST new user with invalid email address", (done) => {
+        it("should NOT POST new user with invalid email address", (done) => 
+        {
             const newUser = {
                 firstName: "first name",
                 lastName: "last name",
@@ -86,14 +102,16 @@ describe('User API', () => {
             chai.request(server)
             .post('/api/user/signup')
             .send(newUser)
-            .end((err, res) => {
+            .end((err, res) => 
+            {
                 if (err) return done(err);
                 res.should.have.status(404)
                 done()
             })
         })
 
-        it("should NOT POST new user with empty password", (done) => {
+        it("should NOT POST new user with empty password", (done) => 
+        {
             const newUser = {
                 firstName: "first name",
                 lastName: "last name",
@@ -104,14 +122,16 @@ describe('User API', () => {
             chai.request(server)
             .post('/api/user/signup')
             .send(newUser)
-            .end((err, res) => {
+            .end((err, res) => 
+            {
                 if (err) return done(err);
                 res.should.have.status(404)
                 done()
             })
         })
 
-        it("should NOT POST new user with password length less than 6", (done) => {
+        it("should NOT POST new user with password length less than 6", (done) => 
+        {
             const newUser = {
                 firstName: "first name",
                 lastName: "last name",
@@ -122,7 +142,8 @@ describe('User API', () => {
             chai.request(server)
             .post('/api/user/signup')
             .send(newUser)
-            .end((err, res) => {
+            .end((err, res) => 
+            {
                 if (err) return done(err);
                 res.should.have.status(404)
                 done()

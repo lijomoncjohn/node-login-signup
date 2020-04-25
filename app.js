@@ -1,4 +1,5 @@
 const express = require('express')
+const session = require('express-session')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const path = require('path');
@@ -14,6 +15,15 @@ const app = express()
 // Include body-parser middleware to handle requests body
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false, parameterLimit: 1000}));
+
+app.use(session({
+    secret: 'thisismyseceretkey',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 60 * 1000 * 30
+    }
+}))
 
 // To handle CORS erros and requests
 app.use(function (req, res, next) {

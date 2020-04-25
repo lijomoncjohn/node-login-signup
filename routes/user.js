@@ -5,9 +5,11 @@ const { check } = require('express-validator') // third party middleware for inp
 
 // Import controller for user routes
 const userController = require('../controllers/user-controller')
+
 /**
  * User login route
  */
+
 router.post('/login', [
     // email must be an email
     check('email').isEmail(),
@@ -15,14 +17,16 @@ router.post('/login', [
     check('password').isLength({ min: 6 })
   ], userController.login)
 
+
 /**
  * User signup route
  */
+
 router.post('/signup', [
     // first name cannot be empty
-    check('first_name').not().isEmpty(),
+    check('firstName').not().isEmpty(),
     // last name cannot be empty
-    check('last_name').not().isEmpty(),
+    check('lastName').not().isEmpty(),
     // date of birth cannot be empty
     check('dob').not().isEmpty(),
     // email must be an email

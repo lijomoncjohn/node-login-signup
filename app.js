@@ -1,16 +1,19 @@
 const express = require('express')
-const app = express()
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const path = require('path');
 
 const config = require('./config/config')
 const HttpError = require('./custom/http-error')
+
 // Import required routes to app
 const userRoutes = require('./routes/user')
 
+const app = express()
+
 // Include body-parser middleware to handle requests body
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: true, parameterLimit: 1000}));
+app.use(bodyParser.urlencoded({extended: false, parameterLimit: 1000}));
 
 // To handle CORS erros and requests
 app.use(function (req, res, next) {
@@ -21,16 +24,22 @@ app.use(function (req, res, next) {
     next()
 })
 
+app.set('view engine', 'pug')
+app.set('views', path.join(__dirname, 'views'));
+
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Include imported routes
 app.use('/api/user', userRoutes)
 
-// Throw new error for invalid routes
+
+// // Throw new error for invalid routes
 app.use((req, res, next) => {
     const error = new HttpError('Sorry, could not find that route', 404)
     throw error
 })
 
-// Error handling
+// // Error handling
 app.use((error, req, res, next) => {
     // If response already sent
     if (res.headerSent) {

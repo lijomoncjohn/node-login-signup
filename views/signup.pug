@@ -1,0 +1,36 @@
+extends layout
+
+block content
+    div.text-center
+        form(class="form-signin col-3 container mt-5" method="POST" action="signup")
+
+            - var h1Classes = ['h3', 'mb-5', 'font-weight-normal']
+            h1(class=h1Classes) Log In
+
+            #error
+                if error
+                    p.text-danger=message
+
+            //-input email
+            label( for="inputFirstName" class="sr-only") First name
+            input(type="text" name="firstName" id="inputFirstName" class="form-control mb-2" placeholder="First name" required autofocus)
+
+            //-input email
+            label( for="inputLastName" class="sr-only") Last name
+            input(type="text" name="lastName" id="inputLastName" class="form-control mb-2" placeholder="Last name" required autofocus)
+
+            //-input email
+            label( for="inputDob" class="sr-only") Date of birth
+            input(type="date" name="dob" id="inputDob" class="form-control mb-2" placeholder="Date of birth" required autofocus)
+
+            //-input email
+            label( for="inputEmail" class="sr-only") Email address
+            input(type="email" name="email" id="inputEmail" class="form-control mb-2" placeholder="Email address" required autofocus)
+
+            //-input password
+            label(for="inputPassword" class="sr-only") Password
+            input(type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required)
+
+            //-signIn button
+            - var buttonClass=['btn', 'btn-lg', 'mt-3', 'btn-primary', 'btn-block'];
+            button(class=buttonClass type="submit") Sign up

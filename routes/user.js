@@ -6,10 +6,19 @@ const { check } = require('express-validator') // third party middleware for inp
 // Import controller for user routes
 const userController = require('../controllers/user-controller')
 
-/**
- * User login route
- */
+// login page
+router.get('/login', userController.auth)
 
+
+// home page
+router.get('/home', userController.home)
+
+
+// sign up page
+router.get('/signup', userController.register)
+
+
+// log in route
 router.post('/login', [
     // email must be an email
     check('email').isEmail(),
@@ -18,10 +27,7 @@ router.post('/login', [
   ], userController.login)
 
 
-/**
- * User signup route
- */
-
+// sign up route
 router.post('/signup', [
     // first name cannot be empty
     check('firstName').not().isEmpty(),
@@ -34,6 +40,7 @@ router.post('/signup', [
     // password must be at least 5 chars long
     check('password').isLength({ min: 6 })
   ], userController.signup)
+
 
 // Exports module to app
 module.exports = router

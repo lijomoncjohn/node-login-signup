@@ -4,6 +4,25 @@ const User = require('../models/user')
 const { validationResult } = require('express-validator');
 const config = require('../config/config')
 
+
+const auth = (req, res, next) => 
+{
+    res.render('index', { error: false });
+}
+
+
+const register = (req, res, next) => 
+{
+    return res.render('signup', { error: false });
+}
+
+
+const home = (req, res, next) => 
+{
+    return res.render('users', { error: false });
+}
+
+
 /**
  * Login user by checking password and if exists in db
  * @param {email, password} req 
@@ -28,15 +47,13 @@ const login = async (req, res, next) =>
     }
     catch (err) 
     {
-        const error = new HttpError('Signup operation failed. Please try later', 500)
-        // return next(error)
+        // const error = new HttpError('Signup operation failed. Please try later', 500)
         res.render('index', {error: true, message: 'Signup operation failed. Please try later'})
     }
 
     if (!existingUser) 
     {
-        const error = new HttpError('Invalid credentials. Unable to login.', 401)
-        // return next(error) 
+        // const error = new HttpError('Invalid credentials. Unable to login.', 401)
         return res.render('index', {error: true, message: 'Invalid credentials. Unable to login'})
     }
 
@@ -44,8 +61,7 @@ const login = async (req, res, next) =>
     {
         if (err) 
         {
-            const error = new HttpError('Invalid credentials. Unable to login.', 401)
-            // return next(error) 
+            // const error = new HttpError('Invalid credentials. Unable to login.', 401)
             return res.render('index', {error: true, message: 'Invalid credentials. Unable to login'})
         }
         
@@ -57,27 +73,6 @@ const login = async (req, res, next) =>
                 {expiresIn: '1h'} 
             )
 
-            // for successful login instance
-            // return res.status(200).json({
-            //     success: true,
-            //     message: 'User logged in successfully',
-            //     user: 
-            //     {
-            //         id: existingUser._id,
-            //         first_name: existingUser.first_name,
-            //         last_name: existingUser.last_name,
-            //         email: existingUser.email,
-            //         dob: existingUser.dob,
-            //         auth: 
-            //         {
-            //             token: token
-            //         },
-            //     }
-            // })
-
-            req.session.user = existingUser
-            req.session.app = 1
-            // redirect to login page
             return res.redirect('/api/user/home')
         }
         else

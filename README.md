@@ -3,7 +3,8 @@ User signup and login demo using nodejs and mongodb. Jsonwebtoken used for gener
 Use git clone or download the repository.
 <bt><br>
 run ```npm install``` from root directory
-
+run ```npm start``` to start the app
+run ```npm test``` to run unit test
 # Libraries used
 <ul>
    <li>express</li>
@@ -12,9 +13,12 @@ run ```npm install``` from root directory
    <li>bcrypt</li>
    <li>express-validator</li>
    <li>mongoose-unique-validator</li>
+   <li>express-session</li>
+   <li>mocho</li>
+   <li>chai</li>
 </ul>
 
-# API end points
+# points
 1. <b>api/user/signup</b> <br/>
    parameters: <br/>
     a) first_name <br/>
@@ -23,7 +27,7 @@ run ```npm install``` from root directory
     d) dob <br/>
     e) password <br/><br/>
 
-1. <b>api/user/login</b> <br/>
+2. <b>api/user/login</b> <br/>
    parameters: <br/>
     a) email <br/>
     b) password <br/>

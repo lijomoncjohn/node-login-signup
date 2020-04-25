@@ -52,14 +52,14 @@ app.use((req, res, next) => {
 })
 
 // // Error handling
-app.use((error, req, res, next) => {
-    // If response already sent
-    if (res.headerSent) {
-        return next(error)
-    }
-    res.status(error.code || 500)
-    res.json({success: false, message: error.message || 'An unknown error occured'}) // Return error when thrown from a router
-})
+// app.use((error, req, res, next) => {
+//     // If response already sent
+//     if (res.headerSent) {
+//         return next(error)
+//     }
+//     res.status(error.code || 500)
+//     res.json({success: false, message: error.message || 'An unknown error occured'}) // Return error when thrown from a router
+// })
 
 // Connect to mongodb using mongoose
 mongoose.connect(config.db, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})

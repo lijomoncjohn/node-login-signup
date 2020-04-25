@@ -15,7 +15,8 @@ const auth = (req, res, next) =>
     let user = req.session.user
     if (user)
     {
-        return res.redirect('/api/user/home')
+        res.redirect('/api/user/home')
+        return
     }
     res.render('index', { error: false })
 }
@@ -31,7 +32,8 @@ const register = (req, res, next) =>
     let user = req.session.user
     if (user)
     {
-        return res.redirect('/api/user/home')
+        res.redirect('/api/user/home')
+        return
     }
     res.render('signup', { error: false })
 }
@@ -47,10 +49,23 @@ const home = (req, res, next) =>
     let user = req.session.user
     if (user)
     {
-        return res.render('users', { error: false , username: user.firstName});
+        res.render('users', { app: req.session.app, username: user.firstName })
+        return
     }
 
     res.redirect('/api/user/login')
+}
+
+const logout = (req, res, next) =>
+{
+    if (req.session.user)
+    {
+        req.session.destroy( () =>
+        {
+            res.redirect('/api/user/login')
+            return
+        })
+    }
 }
 
 
@@ -192,3 +207,4 @@ exports.login = login
 exports.signup = signup
 exports.home = home
 exports.register = register
+exports.logout = logout

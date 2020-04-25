@@ -17,6 +17,8 @@ router.get('/home', userController.home)
 // sign up page
 router.get('/signup', userController.register)
 
+// logout rote clears session
+router.get('/logout', userController.logout)
 
 // log in route
 router.post('/login', [

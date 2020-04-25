@@ -2,6 +2,6 @@ extends layout
 
 block content
     div.text-center
-        div(class="form-signin")
-            div.text-center
-                p wellCome Dear #{username}!
+        div.container
+            h1(class="p-5") Welcome #{username}!
+            a(href='/api/user/logout') Logout

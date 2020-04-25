@@ -18,8 +18,6 @@ describe('User API', () => {
             .end((err, res) => {
                 if (err) return done(err);
                 res.should.have.status(200)
-                // res.should.redirectTo('http://127.0.0.1:80/api/user/home')
-                // res.header['Location'].should().include('api/user/home')
                 done()
             })
         })

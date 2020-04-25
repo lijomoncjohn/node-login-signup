@@ -2,9 +2,9 @@
 User signup and login demo using nodejs and mongodb. Jsonwebtoken used for generating token for security. <br>
 Use git clone or download the repository.
 <bt><br>
-run ```npm install``` from root directory
-run ```npm start``` to start the app
-run ```npm test``` to run unit test
+run ```npm install``` from root directory <r>>
+run ```npm start``` to start the app <br>
+run ```npm test``` to run unit test <br>
 # Libraries used
 <ul>
    <li>express</li>
@@ -18,7 +18,7 @@ run ```npm test``` to run unit test
    <li>chai</li>
 </ul>
 
-# points
+# End points
 1. <b>api/user/signup</b> <br/>
    parameters: <br/>
     a) first_name <br/>

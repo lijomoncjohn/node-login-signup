@@ -68,4 +68,4 @@ mongoose.connect(config.db, {useNewUrlParser: true, useUnifiedTopology: true, us
 
 // Create node app to server. Running on port 80 by default
 var port = 80 || 3000;
-app.listen(port, console.log(`App running on ${port}`));
+module.exports = app.listen(port, console.log(`App running on ${port}`));

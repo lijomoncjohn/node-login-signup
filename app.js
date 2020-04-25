@@ -16,6 +16,7 @@ const app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false, parameterLimit: 1000}));
 
+// To handle session
 app.use(session({
     secret: 'thisismyseceretkey',
     resave: false,
@@ -34,6 +35,7 @@ app.use(function (req, res, next) {
     next()
 })
 
+// Set view engine to render pug templates
 app.set('view engine', 'pug')
 app.set('views', path.join(__dirname, 'views'));
 

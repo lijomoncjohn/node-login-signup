@@ -4,22 +4,53 @@ const User = require('../models/user')
 const { validationResult } = require('express-validator');
 const config = require('../config/config')
 
-
+/**
+ * 
+ * @param {session.user} req 
+ * @param {redirect /api/user/index} res 
+ * @param {} next 
+ */
 const auth = (req, res, next) => 
 {
-    res.render('index', { error: false });
+    let user = req.session.user
+    if (user)
+    {
+        return res.redirect('/api/user/home')
+    }
+    res.render('index', { error: false })
 }
 
-
+/**
+ * 
+ * @param {session.user} req 
+ * @param {redirect /api/user/sgnup} res 
+ * @param {} next 
+ */
 const register = (req, res, next) => 
 {
-    return res.render('signup', { error: false });
+    let user = req.session.user
+    if (user)
+    {
+        return res.redirect('/api/user/home')
+    }
+    res.render('signup', { error: false })
 }
 
-
+/**
+ * 
+ * @param {session.user} req 
+ * @param {redirect /api/user/home} res 
+ * @param {} next 
+ */
 const home = (req, res, next) => 
 {
-    return res.render('users', { error: false });
+    let user = req.session.user
+    if (user)
+    {
+        return res.render('users', { error: false , username: user.firstName});
+    }
+
+    res.redirect('/api/user/login')
 }
 
 
@@ -67,12 +98,15 @@ const login = async (req, res, next) =>
         
         if (isMatch && !err) 
         {
-            const token = jwt.sign(
-                { userId: existingUser._id, email: existingUser.email },
-                config.secret,
-                {expiresIn: '1h'} 
-            )
+            // const token = jwt.sign(
+            //     { userId: existingUser._id, email: existingUser.email },
+            //     config.secret,
+            //     {expiresIn: '1h'} 
+            // )
 
+            req.session.user = existingUser
+            req.session.app = 1
+            // redirect to home
             return res.redirect('/api/user/home')
         }
         else
